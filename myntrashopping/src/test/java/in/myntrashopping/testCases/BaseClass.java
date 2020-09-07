@@ -53,7 +53,7 @@ public class BaseClass {
     	public void acceptSecurityPopUp() throws AWTException
   		{
   			Robot robot = new Robot();
-  			robot.delay(5000);
+  			robot.delay(3000);
   			robot.keyPress(KeyEvent.VK_TAB);
   			robot.keyPress(KeyEvent.VK_ENTER);
   		}

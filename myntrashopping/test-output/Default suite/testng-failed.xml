@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="in.myntrashopping.testCases.TC_MensItems_TopWear_010">
+      <class name="in.myntrashopping.testCases.TC_MensEthnicWear_011">
         <methods>
-          <include name="MensItems_TopWear"/>
+          <include name="EthnicWearForMen"/>
           <include name="setUp"/>
           <include name="tearDown"/>
         </methods>
-      </class> <!-- in.myntrashopping.testCases.TC_MensItems_TopWear_010 -->
+      </class> <!-- in.myntrashopping.testCases.TC_MensEthnicWear_011 -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -76,5 +76,7 @@ public class TC_MensItems_TopWear_010 extends BaseClass{
 		Thread.sleep(3000);
 		mensItems.ClickPlaceOrder();
 		logger.info("Order has been placed...");
+		Thread.sleep(3000);
+		acceptSecurityPopUp();
 	}
 }

@@ -1,8 +1,9 @@
 package in.myntrashopping.pageObjects;
 
-import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
+import javax.xml.xpath.XPath;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -10,52 +11,54 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.google.errorprone.annotations.CanIgnoreReturnValue;
-
-public class MensItems {
+public class MensEthnicWear {
 	
 	WebDriver ldriver;
-	public MensItems (WebDriver rdriver)
+	public MensEthnicWear (WebDriver rdriver)
 	{
 		ldriver = rdriver;
-		PageFactory.initElements(rdriver, this);
+		PageFactory.initElements(rdriver,this);
 	}
 	
 	@FindBy(xpath="//a[text()='Men']")
 	@CacheLookup
 	WebElement txtMen;
 	
-	@FindBy (xpath = "//a[text()='Topwear']")
+	@FindBy (xpath = "//a[text()='Indian & Festive Wear']")
 	@CacheLookup
-	WebElement MensTopWears;
+	WebElement clickIndianAndFestiveWear;
 	
-	@FindBy(xpath = "(//h4[contains(@class,'atsa-title')])[2]")
+	@FindBy(xpath = "//h4[@class='atsa-title'][contains(.,'Size')]")
 	@CacheLookup
 	WebElement clickonTextSize;
 	
+	@FindBy (xpath = "(//div[contains(@class,'common-checkboxIndicator')])[31]")
+	@CacheLookup
+	WebElement checkBoxSizeLong;
+	
 	@FindBy (xpath = "//*[@class='categories-list']/li[1]")
 	@CacheLookup
-	WebElement categoryAsShirt;
+	WebElement categoryAsKurtaSets;
 	
-	@FindBy (xpath = "//*[@class='brand-list']/li[1]")
+	@FindBy(xpath = "(//span[contains(@class,'myntraweb-sprite filter-search-iconSearch sprites-search')])[1]")
 	@CacheLookup
-	WebElement clickBrndLink;
+	WebElement searchForBrandIcon;
 	
-	@FindBy (xpath = "//*[@class='price-list']/li[1]")
+	@FindBy (xpath = "//input[@placeholder='Search for Brand']")
 	@CacheLookup
-	WebElement clickOnPriceList;
+	WebElement enterBrandName;
 	
-	@FindBy (xpath = "//div[@class='vertical-filters-filters']//li[@class='colour-listItem']//label[@class='common-customCheckbox'][contains(.,'Black')]")
+	@FindBy (xpath = "//label[contains(.,'Manyavar(101)')]")
 	@CacheLookup
-	WebElement clickonColorList;
+	WebElement selectBrand;
 	
-	@FindBy (xpath = "//*[@class='discount-list']/li[3]")
+	@FindBy (xpath = "//div[@class='vertical-filters-filters']//li[@class='colour-listItem']//label[@class='common-customCheckbox'][contains(.,'Beige')]")
 	@CacheLookup
-	WebElement clickonDiscountList;
+	WebElement selectColor;
 	
-	@FindBy (xpath = "//*[@class='atsa-base']//ul[@class='atsa-values']//label[@class='common-customCheckbox'][contains(.,'40')]")
+	@FindBy (xpath = "//div[@class='vertical-filters-filters']//ul[@class='price-list']/li[1]")
 	@CacheLookup
-	WebElement clickOnSize;
+	WebElement selectPrice;
 	
 	@FindBy (xpath = "//*[@class='horizontal-filters-sortContainer']")
 	@CacheLookup
@@ -69,9 +72,9 @@ public class MensItems {
 	@CacheLookup
 	WebElement clicktoBuy;
 	
-	@FindBy (xpath = "//p[@class='size-buttons-unified-size'][contains(.,'40')]")
+	@FindBy (xpath = "(//p[@class='size-buttons-unified-size'][contains(.,'L')])[1]")
 	@CacheLookup
-	WebElement sizeText;
+	WebElement selectSizeL;
 	
 	@FindBy (xpath = "(//div[contains(.,'ADD TO BAG')])[9]")
 	@CacheLookup
@@ -84,22 +87,17 @@ public class MensItems {
 	@FindBy (xpath = "(//div[contains(.,'Place Order')])[11]")
 	@CacheLookup
 	WebElement placeOrderButton;
-
+	
 	public void HoverOnMen()
 	{
 		Actions actions = new Actions (ldriver);
 		actions.moveToElement(txtMen);
 		actions.build().perform();
-	}
+	}	
 	
-	public void clickOnTopWearLink()
+	public void SelectIndianAndFestiveWear()
 	{
-		MensTopWears.click();
-	}
-	
-	public void selectCategoryAsShirt()
-	{
-		categoryAsShirt.click();
+		clickIndianAndFestiveWear.click();
 	}
 	
 	public void selectSize()
@@ -107,34 +105,32 @@ public class MensItems {
 		clickonTextSize.click();
 	}
 	
-	public void selectBrands()
+	public void SelectSizeCheckBox()
 	{
-		clickBrndLink.click();
+		checkBoxSizeLong.click();
 	}
 	
-	public void selectPriceRange()
+	public void SelectKurtaSets()
 	{
-		clickOnPriceList.click();
+		categoryAsKurtaSets.click();
 	}
 	
-	public void selectColor()
+	public void EnterBrandName()
 	{
-		clickonColorList.click();
+		searchForBrandIcon.click();
+		enterBrandName.sendKeys("Manyavar");
+		ldriver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+		selectBrand.click();
 	}
 	
-	public void selectDiscountRange()
+	public void SelectColor()
 	{
-		clickonDiscountList.click();
+		selectColor.click();
 	}
 	
-	public void selectShirtSize()
+	public void SelectPrice()
 	{
-		clickOnSize.click();
-	}
-	
-	public void selectSizeTOBuy()
-	{
-		sizeText.click();
+		selectPrice.click();
 	}
 	
 	public void sortBy()
@@ -145,9 +141,14 @@ public class MensItems {
 		sortHightoLow.click();
 	}
 	
-	public void selectShirtToBuy()
+	public void selectKurtaToBuy()
 	{
 		clicktoBuy.click();
+	}
+	
+	public void selectSizeTOBuy()
+	{
+		selectSizeL.click();
 	}
 	
 	public void ClickAddToBag()
@@ -164,5 +165,5 @@ public class MensItems {
 	{
 		placeOrderButton.click();
 	}
-	
+
 }
